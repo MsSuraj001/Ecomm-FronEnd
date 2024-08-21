@@ -33,7 +33,9 @@ function Header() {
         </div>
 
         <div>
-          <button className='bg-blue-600 py-2 px-4 rounded-lg text-white font-bold'>LogIn/Register</button>
+          <Link to={'auth/signIn'}>
+            <button className='bg-blue-600 py-2 px-4 rounded-lg text-white font-bold'>LogIn/Register</button>
+          </Link>
         </div>
       </div>
     </>
