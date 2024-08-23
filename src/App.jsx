@@ -4,6 +4,7 @@ import Home from './Components/Home'
 import SignUp from './Components/Auth/SignUp'
 import LogIn from './Components/Auth/LogIn'
 import AddProduct from './Components/AdminPage/addProduct'
+import NotFound from './Components/Pages/NotFound'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route path='/auth/logIn' element={<LogIn/>}/>
 
         <Route path='admin/addProduct' element={<AddProduct/>} />
+        <Route path='*' element={<NotFound/>} />
       </Routes>
   )
 }
