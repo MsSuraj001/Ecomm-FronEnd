@@ -32,17 +32,17 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
             return;
         }
 
-        if(signUpState.username < 5 || signUpState.username > 20){
+        if(signUpState.username.length < 5 || signUpState.username.length > 20){
             toast.error("Username must be between 5 to 20 characters")
             return;
         }
 
-        if(signUpState.email.includes('@') || signUpState.email.includes('.')){
+        if(!signUpState.email.includes('@') || !signUpState.email.includes('.')){
             toast.error("Invalid Email")
             return;
         }
 
-        if(signUpState.mobileNumber <10 || signUpState.mobileNumber > 12){
+        if(signUpState.mobileNumber.length < 10 || signUpState.mobileNumber.length > 12){
             toast.error("Invalid Mobile Number")
             return;
         }
