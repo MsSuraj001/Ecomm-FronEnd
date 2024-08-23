@@ -17,7 +17,7 @@ function LogIn() {
             <input type="password" id="password" name="password" className='px-4 py-2 mb-2 border' placeholder='Please enter the password' required/>
 
             <button className='bg-blue-600 py-3 px-11 rounded-md mb-0 mt-4'>Log In</button>
-            <p>Don't have an account? <Link to={'auth/signUp'}>Register Now</Link></p>
+            <p>Don't have an account ? <Link to='/auth/signUp' className='text-blue-400'>Register Now</Link></p>
         </form>
     </div>
 </div>

@@ -32,7 +32,7 @@ function SignUn() {
                     </select>
 
                     <button className='bg-blue-600 py-3 px-11 rounded-md mb-0 mt-4'>Register Now</button>
-                    <p>Already have an account? <Link to={'auth/logIn'}>Log In</Link></p>
+                    <p>Already have an account ? <Link to='/auth/logIn' className='text-blue-500'>Log In</Link></p>
                 </form>
             </div>
         </div>
