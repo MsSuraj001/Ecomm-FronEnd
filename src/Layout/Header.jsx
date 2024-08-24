@@ -6,7 +6,7 @@ function Header() {
   return (
     <>
       <div className='bg-white w-[100%] lg:px-24 px-5 shadow-lg py-5 flex justify-between'>
-        <h1 className='font-bold text-2xl hidden sm:block'>Ms Suraj</h1>
+        <Link to={'/'}><h1 className='font-bold text-2xl hidden sm:block'>Ms Suraj</h1></Link>
         <div className='sm:hidden w-12 h-10'>
           <img src={menu} alt="" />
         </div>
@@ -33,7 +33,7 @@ function Header() {
         </div>
 
         <div>
-          <Link to={'auth/signUp'}>
+          <Link to={'/auth/signUp'}>
             <p className='bg-blue-600 py-2 px-4 rounded-lg text-white'>LogIn/Register</p>
           </Link>
         </div>
