@@ -6,7 +6,7 @@ function Header() {
   return (
     <>
       <div className='bg-white w-[100%] lg:px-24 px-5 shadow-lg py-5 flex justify-between'>
-        <Link to={'/'}><h1 className='font-bold text-2xl hidden sm:block'>Ms Suraj</h1></Link>
+        <Link to={'/'} className='hidden sm:block'><h1 className='font-bold text-2xl hidden sm:block'>Ms Suraj</h1></Link>
         <div className='sm:hidden w-12 h-10'>
           <img src={menu} alt="" />
         </div>
