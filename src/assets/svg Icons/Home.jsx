@@ -1,7 +1,7 @@
 // icon:shield-home | Material Design Icons https://materialdesignicons.com/ | Austin Andrews
 import * as React from "react";
 
-function Home(props) {
+function HomeIcon(props) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -15,4 +15,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default HomeIcon;
