@@ -3,7 +3,7 @@ import Layout from '../Layout/Layout'
 import UserAddress from './Pages/UserAddress'
 import AllProductSection from './Pages/AllProductSection'
 
-function Home() {
+function Home() { 
   return (
     <Layout>
       <AllProductSection/>

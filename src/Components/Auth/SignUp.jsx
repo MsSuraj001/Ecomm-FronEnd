@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import Layout from '../../Layout/Layout'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { createAccount } from '../../Redux/Slices/AuthSlice';
 
 function SignUp({handleUserInput, handleUserSubmit}) {    //
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+
     const [signUpState, setSignUpState] = useState({
-        username: '',
+        firstName: '',
         email: '',
         password: '',
         mobileNumber: '',
+        userImage : '',
         age:'',
         gender: '',
     })
@@ -22,18 +28,18 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
         })
     }
 
-    function handleUserSubmit(e){
+    async function handleUserSubmit(e){
         e.preventDefault();
         console.log(signUpState);
         // console.log("sfdjk")
 
-        if(!signUpState.username || !signUpState.email || !signUpState.mobileNumber || !signUpState.password){
+        if(!signUpState.firstName || !signUpState.email || !signUpState.mobileNumber || !signUpState.password){
             toast.error("Please fill the all feilds")
             return;
         }
 
-        if(signUpState.username.length < 5 || signUpState.username.length > 20){
-            toast.error("Username must be between 5 to 20 characters")
+        if(signUpState.firstName.length < 5 || signUpState.firstName.length > 20){
+            toast.error("firstName must be between 5 to 20 characters")
             return;
         }
 
@@ -51,6 +57,13 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
             toast.error("Password must be between 8 to 12 characters")
             return;
         }
+
+        const apiResponse = await dispatch(createAccount(signUpState));
+        console.log("api response is ", apiResponse);
+        if(apiResponse.payload.data.success){
+            navigate('/auth/login');
+        }
+
     }
 
    
@@ -60,11 +73,11 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
             <div className='flex flex-row justify-center'>
                 <form action="" className='w-full px-12 md:w-1/2 lg:w-2/6 flex flex-col justify-center'>
                 <h1 className='text-2xl font-bold text-center py-6'>Sign Up</h1>
-                    <label className='py-1 text-xl'>Username <span className='text-red-800'>*</span></label>
+                    <label className='py-1 text-xl'>FirstName <span className='text-red-800'>*</span></label>
                     <input 
                         type="text" 
-                        id="username" 
-                        name="username" 
+                        id="firstName" 
+                        name="firstName" 
                         placeholder='Please enter the user name'
                         className='px-4 py-2 mb-2 border' 
                         required
@@ -111,6 +124,16 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
                         name="age" 
                         className='px-4 py-2 mb-2 border' 
                         placeholder='Please enter your Age' 
+                        required
+                        onChange={handleUserInput}
+                    />
+                    
+                    <label className='py-2 text-xl'>User Image</label>
+                    <input 
+                        type="file" 
+                        id="userImage" 
+                        name="userImage" 
+                        className='px-4 py-2 mb-2 border' 
                         required
                         onChange={handleUserInput}
                     />
