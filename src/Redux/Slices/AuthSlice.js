@@ -27,6 +27,25 @@ export const createAccount = createAsyncThunk('/auth/createAccount', async (data
     }
 })
 
+export const login = createAsyncThunk('/auth/login', async (data) => {
+    console.log('Incoming data to the lonin user', data);
+
+    try{
+        const response = axiosInstance.post('/auth/login', data)
+        toast.promise(response, {
+            success : (resolvePromise) => {
+                return resolvePromise?.data?.message
+            },
+            loading : 'Hold back right to .......',
+            error : 'Ho No Some thing went wrong'
+        })
+        const apiResponse = await response;
+        return apiResponse
+    }catch(error){
+        console.log('Error while login account', error);
+    }
+})
+
 const AuthSlice = createSlice({
     name : 'auth',
     initialState,

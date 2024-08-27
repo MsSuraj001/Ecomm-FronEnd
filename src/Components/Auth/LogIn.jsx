@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Layout from '../../Layout/Layout'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
+import { login } from '../../Redux/Slices/AuthSlice'
 
 function LogIn({ handleUserInput, handleUserSubmit}) {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [logInData, setLogInData] = useState({
     email: '',
@@ -18,7 +23,7 @@ function LogIn({ handleUserInput, handleUserSubmit}) {
     })
   }
 
-  function handleUserSubmit(e){
+  async function handleUserSubmit(e){
     e.preventDefault();
     console.log(logInData)
 
@@ -26,7 +31,7 @@ function LogIn({ handleUserInput, handleUserSubmit}) {
       toast.error("Please fill the all feilds")
       return;
     }
-    if(logInData.email.includes('@') || logInData.email.includes('.')){
+    if(!logInData.email.includes('@') || !logInData.email.includes('.')){
       toast.error("Invalid Email")
       return;
     }
@@ -34,6 +39,12 @@ function LogIn({ handleUserInput, handleUserSubmit}) {
       toast.error("Password must be between 8 to 12 characters")
       return;
     }
+
+    const apiResponse = await dispatch(login(logInData))
+    if(apiResponse.payload?.data?.message){
+      navigate('/')
+    }
+
   }
 
   return (
