@@ -4,30 +4,59 @@ import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { createAccount } from '../../Redux/Slices/AuthSlice';
+import uploadFile from '../../Helpers/uploadFile';
 
 function SignUp({handleUserInput, handleUserSubmit}) {    //
 
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
+    // const [uploadPhotos, setUploadPhoto] = useState("");
+    const [uploadPic, setUploadPic] = useState('');
+
     const [signUpState, setSignUpState] = useState({
         firstName: '',
         email: '',
         password: '',
         mobileNumber: '',
-        userImage : '',
+        image : '',
         age:'',
         gender: '',
     })
 
     function handleUserInput(e){
         const {name, value} = e.target; 
-        setSignUpState({
-            ...signUpState,
-            [name]: value
+        // setSignUpState({
+        //     ...signUpState,
+        //     [name]: value
+        // })
+        setSignUpState( (prev)=>{
+            return{
+                ...prev,
+                [name]: value
+            }
         })
     }
 
+    const handleUploadPhoto = async (e)=>{
+        const file = e.target.files[0];
+
+        const uploadPic = await uploadFile(file);   // here it's work
+        console.log(uploadPic.url);
+       
+        
+        
+        setUploadPic(file);
+        console.log(setUploadPic(file));     // undifined
+        
+        setSignUpState((prev)=>{
+            return{
+                ...prev,
+                image : uploadPic.url
+            }
+        })
+        console.log('setsigupstate data',setSignUpState);
+    }
     async function handleUserSubmit(e){
         e.preventDefault();
         console.log(signUpState);
@@ -71,7 +100,7 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
     <Layout>
         <div className='my-8'>
             <div className='flex flex-row justify-center'>
-                <form action="" className='w-full px-12 md:w-1/2 lg:w-2/6 flex flex-col justify-center'>
+                <form action="/user" className='w-full px-12 md:w-1/2 lg:w-2/6 flex flex-col justify-center' >
                 <h1 className='text-2xl font-bold text-center py-6'>Sign Up</h1>
                     <label className='py-1 text-xl'>FirstName <span className='text-red-800'>*</span></label>
                     <input 
@@ -131,15 +160,15 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
                     <label className='py-2 text-xl'>User Image</label>
                     <input 
                         type="file" 
-                        id="userImage" 
-                        name="userImage" 
+                        id="image" 
+                        name="image" 
                         className='px-4 py-2 mb-2 border' 
                         required
-                        onChange={handleUserInput}
+                        onChange={handleUploadPhoto}
                     />
 
                     <label >Gender</label>
-                    <select id="gender" name="gender" required>
+                    <select id="gender" name="gender" required onChange={handleUserInput}>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="other">Other</option>
