@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../Redux/Slices/productSlice';
+import { Link } from 'react-router-dom';
 
 function AllProduct() {
     const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function AllProduct() {
                             </div>
                         
                         {/* this is the after image content */}
+                            <Link to='/product/details'>
                             <div className='px-3 py-3'>
                                 <h1>{items.productName}</h1>
 
@@ -55,6 +57,7 @@ function AllProduct() {
                                     <button className='border-2 text-green-600 p-2 rounded-md'>Add To Cart</button>
                                 </div>
                             </div>
+                            </Link>
                         </div>
                     )
                 })}

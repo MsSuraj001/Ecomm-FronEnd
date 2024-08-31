@@ -7,6 +7,7 @@ import AddProduct from './Components/AdminPage/addProduct'
 import NotFound from './Components/Pages/NotFound'
 import UserAccount from './Components/Pages/UserAccount'
 import CartDetails from './Components/Pages/cartDetails'
+import ProductDetails from './Components/Pages/ProductDetails'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/auth/logIn' element={<LogIn/>}/>
         <Route path='/user/account' element={<UserAccount/>}/>
         <Route path='/user/cart' element={<CartDetails/>}/>
+        <Route path='/product/details' element={<ProductDetails/>}/>
 
         <Route path='/admin/addProduct' element={<AddProduct/>} />
         <Route path='*' element={<NotFound/>} />
