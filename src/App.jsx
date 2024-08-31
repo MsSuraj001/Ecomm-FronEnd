@@ -6,6 +6,7 @@ import LogIn from './Components/Auth/LogIn'
 import AddProduct from './Components/AdminPage/addProduct'
 import NotFound from './Components/Pages/NotFound'
 import UserAccount from './Components/Pages/UserAccount'
+import CartDetails from './Components/Pages/cartDetails'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path='/auth/signUp' element={<SignUp/>}/>
         <Route path='/auth/logIn' element={<LogIn/>}/>
         <Route path='/user/account' element={<UserAccount/>}/>
+        <Route path='/user/cart' element={<CartDetails/>}/>
 
         <Route path='/admin/addProduct' element={<AddProduct/>} />
         <Route path='*' element={<NotFound/>} />

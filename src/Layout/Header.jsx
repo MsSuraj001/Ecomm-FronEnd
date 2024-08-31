@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import menu from '../assets/menu.png'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import UserAccount from '../assets/svg Icons/UserAccount'
+import { getUserDatails } from '../Redux/Slices/userSlice'
 
 function Header() {
-
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector( (state) => state.auth.isLoggedIn)
+
+  const { userData } = useSelector( (state) => state.user)
+  // const { cartData } = useSelector( (state) => state.cart)
+
+  useEffect( () => {
+    dispatch(getUserDatails())
+  }, []);
 
   return (
     <>
@@ -40,7 +48,10 @@ function Header() {
         <div className='flex flex-row gap-4'>
           {isLoggedIn ? (
             <Link to={'/user/account'}>
-              <UserAccount/>
+              { userData.image ? (
+                <img src={userData.image} alt="" className='w-10 h-10 rounded-full'/>
+              ) : (<UserAccount/>)}
+              {/* // */}
           </Link>
           ) : (
             <Link to={'/auth/signUp'}>
@@ -49,7 +60,7 @@ function Header() {
           )}
 
           {
-            isLoggedIn ? (<div>Cart</div>)  : (<div></div>)
+            isLoggedIn ? (<Link to={'/user/cart'}>Cart</Link>)  : (<div></div>)
           }
         </div>
       </div>

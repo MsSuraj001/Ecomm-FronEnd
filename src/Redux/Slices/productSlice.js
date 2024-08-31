@@ -38,4 +38,4 @@ const productSlices = createSlice({
     }
 })
 
-export default productSlices.reducer;
+export default productSlices.reducer
