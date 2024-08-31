@@ -32,7 +32,7 @@ const productSlices = createSlice({
         builder.addCase(getAllProducts.fulfilled, (state, action) => {
             console.log(action.payload)
             state.productData = action?.payload?.data?.data
-            console.log(state.productData);
+            // console.log(state.productData);
             
         })
     }

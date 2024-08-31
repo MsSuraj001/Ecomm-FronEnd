@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import menu from '../assets/menu.png'
 import { useSelector } from 'react-redux'
+import UserAccount from '../assets/svg Icons/UserAccount'
 
 function Header() {
 
@@ -38,8 +39,8 @@ function Header() {
 
         <div className='flex flex-row gap-4'>
           {isLoggedIn ? (
-            <Link to={''}>
-            <p className='bg-blue-600 py-2 px-4 rounded-lg text-white'>LogOut</p>
+            <Link to={'/user/account'}>
+              <UserAccount/>
           </Link>
           ) : (
             <Link to={'/auth/signUp'}>
