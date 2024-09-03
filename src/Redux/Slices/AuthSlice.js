@@ -5,7 +5,8 @@ import toast from "react-hot-toast";
 const initialState = {
     isLoggedIn : localStorage.getItem('isLoggedIn') === 'true' || 'false',
     role : localStorage.getItem('role') || '',
-    data : JSON.parse(localStorage.getItem('data')) || {},
+    // data : JSON.parse(localStorage.getItem('data')) || {},
+    data : {}
 }
 
 export const createAccount = createAsyncThunk('/auth/createAccount', async (data) => {

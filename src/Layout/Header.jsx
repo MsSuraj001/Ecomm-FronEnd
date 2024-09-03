@@ -10,7 +10,7 @@ function Header() {
   const isLoggedIn = useSelector( (state) => state.auth.isLoggedIn)
 
   const { userData } = useSelector( (state) => state.user)
-  // const { cartData } = useSelector( (state) => state.cart)
+  const { cartData } = useSelector( (state) => state.cart)
 
   useEffect( () => {
     dispatch(getUserDatails())
@@ -51,7 +51,6 @@ function Header() {
               { userData.image ? (
                 <img src={userData.image} alt="" className='w-10 h-10 rounded-full'/>
               ) : (<UserAccount/>)}
-              {/* // */}
           </Link>
           ) : (
             <Link to={'/auth/signUp'}>
