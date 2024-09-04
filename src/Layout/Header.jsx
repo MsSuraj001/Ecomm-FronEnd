@@ -9,13 +9,7 @@ import { logout } from '../Redux/Slices/AuthSlice'
 function Header() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector( (state) => state.auth.isLoggedIn)
-
-  // const { userData } = useSelector( (state) => state.user)
-  // const { cartData } = useSelector( (state) => state.cart)
-
-  // useEffect( () => {
-  //   dispatch(getUserDatails())
-  // }, []);
+  const { userData } = useSelector( (state) => state.user)
 
   async function handleLogOut(){
       const res = dispatch(logout())
@@ -52,7 +46,7 @@ function Header() {
         </div>
 
         <div className='flex flex-row gap-4'>
-          {/* {isLoggedIn ? (
+          {isLoggedIn ? (
             <Link to={'/user/account'}>
               { userData.image ? (
                 <img src={userData.image} alt="" className='w-10 h-10 rounded-full'/>
@@ -62,13 +56,13 @@ function Header() {
             <Link to={'/auth/signUp'}>
             <p className='bg-blue-600 py-2 px-4 rounded-lg text-white'>LogIn/Registar</p>
           </Link>
-          )} */}
+          )}
 
-          {
+          {/* {
             isLoggedIn ? (
               <p onClick={handleLogOut}>LogOut</p>
             ) : (<Link to={'/auth/login'}><p>LogIn</p></Link>)
-          }
+          } */}
 
           {
             isLoggedIn ? (<Link to={'/user/cart'}>Cart</Link>)  : (<div></div>)

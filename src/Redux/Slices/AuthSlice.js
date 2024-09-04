@@ -6,28 +6,10 @@ import { json } from "react-router-dom";
 const initialState = {
     isLoggedIn : localStorage.getItem('isLoggedIn') === 'true' || false,
     role : localStorage.getItem('role') || '',
-    data : JSON.parse(localStorage.getItem('data')) || {},
+    // data : JSON.parse(localStorage.getItem('data')) || {},
     // data : {}
 }
 
-export const createAccount = createAsyncThunk('/auth/createAccount', async (data) => {
-    console.log('Incoming data to the user', data);
-
-    try{
-        const response = axiosInstance.post('/user', data)
-        toast.promise(response, {
-            success : (resolvePromise) => {
-                return resolvePromise?.data?.message
-            },
-            loading : 'Hold back right to .......',
-            error : 'Ho No Some thing went wrong'
-        })
-        const apiResponse = await response;
-        return apiResponse
-    }catch(error){
-        console.log('Error while creating account', error);
-    }
-})
 
 export const login = createAsyncThunk('/auth/login', async (data) => {
     console.log('Incoming data to the lonin user', data);
@@ -86,7 +68,7 @@ const AuthSlice = createSlice({
             state.data = {},
             state.role = ''
 
-            localStorage.setItem('isLoggedIn', 'false');
+            localStorage.setItem('isLoggedIn', false);
             localStorage.setItem('data', JSON.stringify({}));
             localStorage.setItem('role', '');
         })

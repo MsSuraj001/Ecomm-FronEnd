@@ -3,7 +3,7 @@ import Layout from '../../Layout/Layout'
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { createAccount } from '../../Redux/Slices/AuthSlice';
+import { createAccount } from '../../Redux/Slices/userSlice.js';
 import uploadFile from '../../Helpers/uploadFile';
 
 function SignUp({handleUserInput, handleUserSubmit}) {    //

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import Layout from '../../Layout/Layout'
 import { useDispatch, useSelector } from 'react-redux';
-import { createAccount, login } from '../../Redux/Slices/AuthSlice';
+import { createAccount, } from '../../Redux/Slices/userSlice';
+import { login } from '../../Redux/Slices/AuthSlice';
 import { getUserDatails } from '../../Redux/Slices/userSlice';
 import LogIn from '../Auth/LogIn';
 
@@ -12,6 +13,7 @@ function UserAccount() {
 
   useEffect( () => {
     dispatch(getUserDatails());
+    // dispatch(createAccount());
   }, [])
   return (
     <Layout>

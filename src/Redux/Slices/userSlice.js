@@ -7,6 +7,24 @@ const initialState = {
     userData : {}
 }
 
+export const createAccount = createAsyncThunk('/auth/createAccount', async (data) => {
+    console.log('Incoming data to the user', data);
+
+    try{
+        const response = axiosInstance.post('/user', data)
+        toast.promise(response, {
+            success : (resolvePromise) => {
+                return resolvePromise?.data?.message
+            },
+            loading : 'Hold back right to .......',
+            error : 'Ho No Some thing went wrong'
+        })
+        const apiResponse = await response;
+        return apiResponse
+    }catch(error){
+        console.log('Error while creating account', error);
+    }
+})
 
 export const getUserDatails = createAsyncThunk('user/getUserDetails', async () => {
     // console.log("hit the user details")
