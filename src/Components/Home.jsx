@@ -25,7 +25,7 @@ function Home() {
       {/* <div className='w-full h-[70vh] bg-slate-100'>
           <h1>Home section</h1>
       </div> */}
-      <AllProduct/>
+      {/* <AllProduct/> */}
     </Layout>
   )
 }

@@ -4,17 +4,27 @@ import menu from '../assets/menu.png'
 import { useDispatch, useSelector } from 'react-redux'
 import UserAccount from '../assets/svg Icons/UserAccount'
 import { getUserDatails } from '../Redux/Slices/userSlice'
+import { logout } from '../Redux/Slices/AuthSlice'
 
 function Header() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector( (state) => state.auth.isLoggedIn)
 
+<<<<<<< auth
   const { userData } = useSelector( (state) => state.user)
+=======
+  // const { userData } = useSelector( (state) => state.user)
+>>>>>>> local
   // const { cartData } = useSelector( (state) => state.cart)
 
-  useEffect( () => {
-    dispatch(getUserDatails())
-  }, []);
+  // useEffect( () => {
+  //   dispatch(getUserDatails())
+  // }, []);
+
+  async function handleLogOut(){
+      const res = dispatch(logout())
+      console.log(res)
+  }
 
   return (
     <>
@@ -46,7 +56,7 @@ function Header() {
         </div>
 
         <div className='flex flex-row gap-4'>
-          {isLoggedIn ? (
+          {/* {isLoggedIn ? (
             <Link to={'/user/account'}>
               { userData.image ? (
                 <img src={userData.image} alt="" className='w-10 h-10 rounded-full'/>
@@ -57,7 +67,13 @@ function Header() {
             <Link to={'/auth/signUp'}>
             <p className='bg-blue-600 py-2 px-4 rounded-lg text-white'>LogIn/Registar</p>
           </Link>
-          )}
+          )} */}
+
+          {
+            isLoggedIn ? (
+              <p onClick={handleLogOut}>LogOut</p>
+            ) : (<Link to={'/auth/login'}><p>LogIn</p></Link>)
+          }
 
           {
             isLoggedIn ? (<Link to={'/user/cart'}>Cart</Link>)  : (<div></div>)
