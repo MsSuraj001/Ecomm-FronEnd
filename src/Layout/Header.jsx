@@ -10,11 +10,7 @@ function Header() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector( (state) => state.auth.isLoggedIn)
 
-<<<<<<< auth
-  const { userData } = useSelector( (state) => state.user)
-=======
   // const { userData } = useSelector( (state) => state.user)
->>>>>>> local
   // const { cartData } = useSelector( (state) => state.cart)
 
   // useEffect( () => {
@@ -61,7 +57,6 @@ function Header() {
               { userData.image ? (
                 <img src={userData.image} alt="" className='w-10 h-10 rounded-full'/>
               ) : (<UserAccount/>)}
-              {/* // */}
           </Link>
           ) : (
             <Link to={'/auth/signUp'}>
