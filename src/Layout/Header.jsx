@@ -46,7 +46,7 @@ function Header() {
         </div>
 
         <div className='flex flex-row gap-4'>
-          {isLoggedIn ? (
+          {/* {isLoggedIn ? (
             <Link to={'/user/account'}>
               { userData.image ? (
                 <img src={userData.image} alt="" className='w-10 h-10 rounded-full'/>
@@ -56,7 +56,7 @@ function Header() {
             <Link to={'/auth/signUp'}>
             <p className='bg-blue-600 py-2 px-4 rounded-lg text-white'>LogIn/Registar</p>
           </Link>
-          )}
+          )} */}
 
           {
             isLoggedIn ? (<Link to={'/user/cart'}>Cart</Link>)  : (<div></div>)
