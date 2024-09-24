@@ -12,7 +12,16 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
     const navigate = useNavigate()
 
     // const [uploadPhotos, setUploadPhoto] = useState("");
-    const [uploadPic, setUploadPic] = useState('');
+    // const [uploadPic, setUploadPic] = useState('');
+    const [image, setImage] = useState('');
+    
+    function handleUpload(e) {
+        const file = e.target.files[0];
+        console.log(file);
+        setImage(file);
+    }
+
+
 
     const [signUpState, setSignUpState] = useState({
         firstName: '',
@@ -38,28 +47,32 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
         })
     }
 
-    const handleUploadPhoto = async (e)=>{
-        const file = e.target.files[0];
+    // const handleUploadPhoto = async (e)=>{
+    //     const file = e.target.files[0];
 
-        const uploadPic = await uploadFile(file);   // here it's work
-        console.log(uploadPic.url);
+    //     const uploadPic = await uploadFile(file);   // here it's work
+    //     console.log(uploadPic.url);
        
         
         
-        setUploadPic(file);
-        console.log(setUploadPic(file));     // undifined
+    //     setUploadPic(file);
+    //     console.log(setUploadPic(file));     // undifined
         
-        setSignUpState((prev)=>{
-            return{
-                ...prev,
-                image : uploadPic.url
-            }
-        })
-        console.log('setsigupstate data',setSignUpState);
-    }
+    //     setSignUpState((prev)=>{
+    //         return{
+    //             ...prev,
+    //             image : uploadPic.url
+    //         }
+    //     })
+    //     console.log('setsigupstate data',setSignUpState);
+    // }
     async function handleUserSubmit(e){
         e.preventDefault();
         console.log(signUpState);
+
+       
+
+
         // console.log("sfdjk")
 
         if(!signUpState.firstName || !signUpState.email || !signUpState.mobileNumber || !signUpState.password){
@@ -86,6 +99,15 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
             toast.error("Password must be between 8 to 12 characters")
             return;
         }
+
+        const formData = new FormData();
+        formData.append('image', signUpState.image);
+        formData.append('firstName', signUpState.firstName);
+        formData.append('email', signUpState.email);
+        formData.append('password', signUpState.password);
+        formData.append('mobileNumber', signUpState.mobileNumber);
+        formData.append('age', signUpState.age);
+        formData.append('gender', signUpState.gender);
 
         const apiResponse = await dispatch(createAccount(signUpState));
         console.log("api response is ", apiResponse);
@@ -164,7 +186,7 @@ function SignUp({handleUserInput, handleUserSubmit}) {    //
                         name="image" 
                         className='px-4 py-2 mb-2 border' 
                         required
-                        onChange={handleUploadPhoto}
+                        onChange={handleUpload}
                     />
 
                     <label >Gender</label>

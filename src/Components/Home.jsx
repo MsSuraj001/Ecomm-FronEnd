@@ -5,6 +5,7 @@ import AllProductSection from './Pages/AllProductSection'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../Redux/Slices/productSlice'
 import AllProduct from '../AllProductsCart/AllProduct'
+// import UploadImg from './Pages/UploadImg'
 
 function Home() { 
 //   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ function Home() {
           <h1>Home section</h1>
       </div> */}
       {/* <AllProduct/> */}
+      {/* <UploadImg/> */}
     </Layout>
   )
 }
